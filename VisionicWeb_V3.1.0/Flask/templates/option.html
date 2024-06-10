@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visionic</title>
+  <link rel="stylesheet" href="../static/css/input.css">
+  <link rel="stylesheet" href="../static/css/train-menu.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    :root {
+      --hue: 240;
+      --hue-complimentary1: 270;
+      --hue-complimentary2: 300;
+      --dark-color: hsl(var(--hue), 100%, 9%);
+      --light-color: hsl(var(--hue), 95%, 98%);
+      --base: hsl(var(--hue), 95%, 50%);
+      --complimentary1: hsl(var(--hue-complimentary1), 95%, 50%);
+      --complimentary2: hsl(var(--hue-complimentary2), 95%, 50%);
+      --font-family: "Poppins", system-ui;
+      --bg-gradient: linear-gradient(to bottom,
+          hsl(var(--hue), 95%, 99%),
+          hsl(var(--hue), 95%, 84%));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      max-width: 100vw;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      font-family: var(--font-family);
+      color: var(--dark-color);
+      background: var(--bg-gradient);
+    }
+
+    .orb-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .overlay {
+        display: flex; 
+        width: 100%;
+        max-width: 1000px;
+        max-height: 640px;
+        padding: 2rem;
+        border-radius: 2rem;
+        position: relative;
+        justify-content: space-between;
+        align-items: stretch;
+        
+    }
+
+    .overlay__left, .overlay__right {
+        min-height: 500px;
+        padding: 4rem 6rem;
+    }
+
+    .overlay__inner {
+        flex: 1;
+        padding: 1rem;
+    }
+      
+    .overlay__left {
+        width: 100%;
+        max-width: 1140px;
+        max-height: 640px;
+        padding: 4rem 6rem;
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.375);
+        box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+        border-radius: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.125);
+        justify-content: space-between;
+        position: relative;
+        margin-right: 2rem; 
+        text-align: center;
+
+        flex-direction: column; 
+        padding: 1rem;
+      }
+
+      .overlay__right {
+        width: 100%;
+        max-width: 1140px;
+        max-height: 640px;
+        padding: 4rem 6rem;
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.375);
+        box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+        border-radius: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.125);
+        justify-content: space-between;
+        position: relative;
+
+        text-align: center;
+        flex-direction: column; 
+        padding: 1rem;
+      }
+
+      .center-title {
+        margin-bottom: 1rem; 
+        background-image: linear-gradient(
+            45deg,
+            var(--base) 25%,
+            var(--complimentary2)
+          );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          -moz-background-clip: text;
+          -moz-text-fill-color: transparent;
+      }
+      
+      .center-image {
+        width: 90%; 
+        margin-bottom: 1rem; 
+      }
+      
+      .center-description {
+        margin-bottom: 1rem; 
+      }
+      
+      .center-button {
+        padding: 0.5rem 1rem;
+        border: none;
+        background-color: var(--complimentary1);
+        color: white;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+      
+
+
+    .text-gradient {
+      background-image: linear-gradient(45deg,
+          var(--base) 25%,
+          var(--complimentary2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-background-clip: text;
+      -moz-text-fill-color: transparent;
+    }
+
+
+    .top-left-button {
+      position: absolute;
+      top: 10px;
+      left: -25px;
+      z-index: 10;
+    }
+
+    .about-us-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      background-image: linear-gradient(45deg,
+          var(--base) 25%,
+          var(--complimentary2));
+      color: white;
+      text-decoration: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-family: var(--font-family);
+      font-size: 2em;
+      text-align: center;
+      line-height: 50px;
+    }
+
+    .overlay__btns {
+        width: 100%;
+        max-width: 30rem;
+        display: flex;
+        justify-content: center; 
+      }
+      
+      .overlay__btn {
+        width: 50%;
+        height: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--light-color);
+        background: var(--dark-color);
+        border: none;
+        border-radius: 0.5rem;
+        transition: transform 150ms ease;
+        outline-color: hsl(var(--hue), 95%, 50%);
+      }
+      
+      .overlay__btn:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+      
+      .overlay__btn--colors:hover {
+        background-image: linear-gradient(
+            45deg,
+            var(--base) 25%, 
+            var(--complimentary2) 
+        );
+      }
+      
+      .overlay__btn--transparent:hover {
+        border: 2px solid var(--base); 
+        background-image: none; 
+        color: var(--dark-color); 
+      }
+
+
+
+    a {
+      text-decoration: none;
+      color: var(--dark-color);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media (prefers-contrast: high) {
+      .orb-canvas {
+        display: none;
+      }
+    }
+
+    @media only screen and (max-width: 1140px) {
+      .overlay {
+        padding: 8rem 4rem;
+      }
+    }
+
+    @media only screen and (max-width: 840px) {
+      body {
+        padding: 1.5rem;
+      }
+
+      .overlay {
+        padding: 4rem;
+        height: auto;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .overlay {
+        padding: 1.5rem;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <canvas class="orb-canvas"></canvas>
+
+  <div class="overlay">
+    <div class="top-left-button">
+      <a href="/" class="about-us-btn" onclick="location.href='/'"><</a>
+    </div>
+    <div class="overlay__inner overlay__left">
+        <h1 class="center-title">Visual</h1>
+        <img src="https://drive.google.com/uc?export=view&id=1YcUAXeKsIXKgzLnT4MiKPlsDP7_f8xWz" class="center-image" alt="Descriptive Text for Image">
+        <p class="center-description">Visionic's image detection offers cutting-edge assistance to the elderly by identifying objects within their environment through a simple photo.</p>
+        <div class="overlay__btns">
+            <button class="overlay__btn overlay__btn--colors" onclick="location.href='/detection-menu'">Click Here</button>
+        </div>
+    </div>
+    <div class="overlay__inner overlay__right">
+        <h1 class="center-title">Text</h1>
+        <img src="https://drive.google.com/uc?export=view&id=16kCntEefZfIDJBEIdDlzuEtq0NkJ3Q6d" class="center-image" alt="Descriptive Text for Image">
+        <p class="center-description">Users can effortlessly convert written material into digital text.The app streamlines the process of reading and comprehending various texts</p>
+        <div class="overlay__btns">
+            <button class="overlay__btn overlay__btn--colors" onclick="location.href='/text-menu'">Click Here</button>
+        </div>
+    </div>
+  </div>
+  
+
+  <script>
+
+
+  </script>
+</body>
+
+</html>

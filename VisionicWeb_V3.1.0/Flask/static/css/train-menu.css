@@ -1,0 +1,13 @@
+.name-input-ctr{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    height: 100%;
+}
+button{
+    /* background-color: transparent; */
+}
+.overlay__inner{
+    width: 100%;
+    height: 100%;
+}
