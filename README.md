@@ -1,7 +1,7 @@
 
 # Visionic
 
-Visionic aims to assist the elderly by combining vision AI with audio AI. Utilizing facial recognition, Visionic helps the elderly recognize people and objects. Additionally, it employs computer vision to perform OCR (Optical Character Recognition) and translates the detected text into speech, aiding those with vision impairments.
+Visionic is designed to assist the elderly by integrating advanced computer vision and audio processing technologies. By employing facial recognition, Visionic facilitates the identification of people and objects. Additionally, it utilizes Optical Character Recognition (OCR) to detect text and converts it into speech using Text-to-Speech (TTS) systems. This dual functionality provides significant support for individuals with vision impairments.
 
 ## Table of Contents
 
