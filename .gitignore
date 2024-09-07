@@ -1,0 +1,25 @@
+venv/
+.env/
+.venv/
+
+*.zip
+*.tar.gz
+*.rar
+# Ignore Python cache directories
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore log files and temporary files
+*.log
+*.tmp
+
+# Ignore other sensitive or generated files
+*.swp
+*.swo
+*~
+*.bak
+*.old
