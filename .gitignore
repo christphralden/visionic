@@ -25,3 +25,5 @@ __pycache__/
 *.old
 
 **/faces/*
+!**/faces/__demo__/
+
